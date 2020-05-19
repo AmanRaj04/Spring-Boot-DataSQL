@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+    <title>Registration Form</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{css/style.css}" />
+	<link rel="stylesheet" href="../static/css/materia/bootstrap.min.css"  th:href="@{css/materia/bootstrap.min.css}" />
+ 
+</head>
+<body>
+<div  layout:fragment="content" class="container mySpace">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">TaskQuery</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" sec:authorize="!isAuthenticated()">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+      <li class="nav-item" sec:authorize="!isAuthenticated()">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      
+  </div>
+</nav>
+</div>
+    <!-- Main component for a primary marketing message or call to action -->
+    <div  layout:fragment="content" class="container mySpace">
+    <div class="alert alert-danger" th:if="${param.error}">
+	
+	<h2>Invalid Email or Password. Please enter correct details.</h2> 
+    </div>
+    
+        <form th:action="@{/login}" th:object="${user}" method="post">
+
+			<div class="form-group">
+				<label for="email" class="form-control-label">Email</label> 
+				<input type="text" class="form-control" id="email" name="username" />
+				
+			</div>
+			<div class="form-group">
+				<label for="password" class="form-control-label">Password</label> 
+				<input type="password" class="form-control" id="password" name="password" />
+			</div>
+			
+			<input type="submit" value="Submit" class="btn btn-success" />
+    <p class="text text-center">
+	&copy; 2020 - Made By Aman
+	</p>
+	</form>
+	</div>
+
+ <!-- /container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{webjars/jquery/1.9.1/jquery.min.js}"></script>
+  <script th:src="@{webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+</body>
+</html>
